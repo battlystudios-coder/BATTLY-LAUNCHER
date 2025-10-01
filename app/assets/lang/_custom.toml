@@ -1,0 +1,20 @@
+# Custom Language File for Launcher Customizer
+
+[ejs.app]
+title = "Battly Launcher"
+
+[ejs.landing]
+mediaGitHubURL = "https://battly.site"
+mediaXURL = "#"
+mediaInstagramURL = "#"
+mediaYouTubeURL = "#"
+mediaDiscordURL = "https://discord.battly.site"
+
+[ejs.settings]
+sourceGithubLink = "#"
+supportLink = "#"
+
+[ejs.welcome]
+welcomeHeader = "BENVENUTO/A SU BATTLY"
+welcomeDescription = ""
+welcomeDescCTA = "Copyright © 2025 BATTLY STUDIOS"
