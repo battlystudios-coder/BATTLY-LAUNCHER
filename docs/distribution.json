@@ -1571,35 +1571,6 @@
                     }
                 }
             ]
-        },
-        {
-            "id": "Demo-1.21.4",
-            "name": "BattlyClient (Demo 1.21.4)",
-            "description": "BattlyClient Beta (Demo)",
-            "icon": "https://api.battly.site/LOGO.png",
-            "version": "1.0.3",
-            "address": "localhost:25565",
-            "minecraftVersion": "1.21.4",
-            "discord": {
-                "shortId": "1420139811062153246",
-                "largeImageText": "BattlyClient",
-                "largeImageKey": ""
-            },
-            "mainServer": false,
-            "autoconnect": false,
-            "modules": [
-                {
-                    "id": "net.fabricmc:fabric-loader:1.1.0",
-                    "name": "Fabric (fabric-loader)",
-                    "type": "Fabric",
-                    "artifact": {
-                        "size": 204500,
-                        "MD5": "c4ca4238a0b923820dcc509a6f75849b",
-                        "url": "https://api.battly.site/fabric-installer-1.1.0.jar"
-                    },
-                    "subModules": []
-                }
-            ]
         }
     ]
 }
