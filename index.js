@@ -54,7 +54,7 @@ function initAutoUpdater(event, data) {
 ipcMain.on('autoUpdateAction', (event, arg, data) => {
     switch(arg){
         case 'initAutoUpdater':
-            console.log('Initializing auto updater.')
+            console.log('Inizializzazione dell\'aggiornamento automatico.')
             initAutoUpdater(event, data)
             event.sender.send('autoUpdateNotification', 'ready')
             break
@@ -80,7 +80,7 @@ ipcMain.on('autoUpdateAction', (event, arg, data) => {
             autoUpdater.quitAndInstall()
             break
         default:
-            console.log('Unknown argument', arg)
+            console.log('Argomento sconosciuto', arg)
             break
     }
 })
@@ -269,12 +269,12 @@ function createMenu() {
         let applicationSubMenu = {
             label: 'Application',
             submenu: [{
-                label: 'About Application',
+                label: 'Informazioni sull\'applicazione',
                 selector: 'orderFrontStandardAboutPanel:'
             }, {
                 type: 'separator'
             }, {
-                label: 'Quit',
+                label: 'Chiudi',
                 accelerator: 'Command+Q',
                 click: () => {
                     app.quit()
@@ -286,29 +286,29 @@ function createMenu() {
         let editSubMenu = {
             label: 'Edit',
             submenu: [{
-                label: 'Undo',
+                label: 'Disfare',
                 accelerator: 'CmdOrCtrl+Z',
                 selector: 'undo:'
             }, {
-                label: 'Redo',
+                label: 'Rifare',
                 accelerator: 'Shift+CmdOrCtrl+Z',
                 selector: 'redo:'
             }, {
                 type: 'separator'
             }, {
-                label: 'Cut',
+                label: 'Taglio',
                 accelerator: 'CmdOrCtrl+X',
                 selector: 'cut:'
             }, {
-                label: 'Copy',
+                label: 'Copia',
                 accelerator: 'CmdOrCtrl+C',
                 selector: 'copy:'
             }, {
-                label: 'Paste',
+                label: 'Impasto',
                 accelerator: 'CmdOrCtrl+V',
                 selector: 'paste:'
             }, {
-                label: 'Select All',
+                label: 'Seleziona tutto',
                 accelerator: 'CmdOrCtrl+A',
                 selector: 'selectAll:'
             }]

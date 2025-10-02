@@ -1,7 +1,7 @@
 # Custom Language File for Launcher Customizer
 
 [ejs.app]
-title = "Battly Launcher"
+title = "Battly Launcher - v1.0.3"
 
 [ejs.landing]
 mediaGitHubURL = "https://battly.site"
