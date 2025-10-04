@@ -49,9 +49,9 @@ class ProcessBuilder {
         const tempNativePath = path.join(os.tmpdir(), ConfigManager.getTempNativeFolder(), crypto.pseudoRandomBytes(16).toString('hex'))
         process.throwDeprecation = true
         this.setupLiteLoader()
-        logger.info('Using liteloader:', this.usingLiteLoader)
+        logger.info('Utilizzo di liteloader:', this.usingLiteLoader)
         this.usingFabricLoader = this.server.modules.some(mdl => mdl.rawModule.type === Type.Fabric)
-        logger.info('Using fabric loader:', this.usingFabricLoader)
+        logger.info('Utilizzo del caricatore di tessuti:', this.usingFabricLoader)
         const modObj = this.resolveModConfiguration(ConfigManager.getModConfiguration(this.server.rawServer.id).mods, this.server.modules)
         
         // Mod list below 1.13
@@ -75,7 +75,7 @@ class ProcessBuilder {
         const loggableArgs = [...args]
         loggableArgs[loggableArgs.findIndex(x => x === this.authUser.accessToken)] = '**********'
 
-        logger.info('Launch Arguments:', loggableArgs)
+        logger.info('Argomenti di avvio:', loggableArgs)
 
         const child = child_process.spawn(ConfigManager.getJavaExecutable(this.server.rawServer.id), args, {
             cwd: this.gameDir,
@@ -100,9 +100,9 @@ class ProcessBuilder {
             logger.info('Exited with code', code)
             fs.remove(tempNativePath, (err) => {
                 if(err){
-                    logger.warn('Error while deleting temp dir', err)
+                    logger.warn('Errore durante l\'eliminazione della directory temporanea', err)
                 } else {
-                    logger.info('Temp dir deleted successfully.')
+                    logger.info('Cartella temporanea eliminata con successo.')
                 }
             })
         })
@@ -372,7 +372,7 @@ class ProcessBuilder {
 
         // Java Arguments
         if(process.platform === 'darwin'){
-            args.push('-Xdock:name=HeliosLauncher')
+            args.push('-Xdock:name=BattlyLauncher')
             args.push('-Xdock:icon=' + path.join(__dirname, '..', 'images', 'minecraft.icns'))
         }
         args.push('-Xmx' + ConfigManager.getMaxRAM(this.server.rawServer.id))
@@ -423,7 +423,7 @@ class ProcessBuilder {
 
         // Java Arguments
         if(process.platform === 'darwin'){
-            args.push('-Xdock:name=HeliosLauncher')
+            args.push('-Xdock:name=BattlyLauncher')
             args.push('-Xdock:icon=' + path.join(__dirname, '..', 'images', 'minecraft.icns'))
         }
         args.push('-Xmx' + ConfigManager.getMaxRAM(this.server.rawServer.id))
@@ -525,7 +525,7 @@ class ProcessBuilder {
                             val = args[i].replace(argDiscovery, tempNativePath)
                             break
                         case 'launcher_name':
-                            val = args[i].replace(argDiscovery, 'Helios-Launcher')
+                            val = args[i].replace(argDiscovery, 'Battly-Launcher')
                             break
                         case 'launcher_version':
                             val = args[i].replace(argDiscovery, this.launcherVersion)
@@ -803,7 +803,7 @@ class ProcessBuilder {
                         if(!shouldExclude){
                             fs.writeFile(path.join(tempNativePath, extractName), zipEntries[i].getData(), (err) => {
                                 if(err){
-                                    logger.error('Error while extracting native library:', err)
+                                    logger.error('Errore durante l\'estrazione della libreria nativa:', err)
                                 }
                             })
                         }
