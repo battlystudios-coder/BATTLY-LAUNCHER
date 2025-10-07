@@ -1,8 +1,3 @@
-/**
- * @author TECNO BROS
- 
- */
-
 'use strict';
 
 import { logger, database, changePanel } from '../utils.js';
@@ -292,7 +287,7 @@ class Friends {
                             });
                                     
                         } catch (error) {
-                            console.log(`❌ Error al obtener la skin de ${user}.`);
+                            console.log(`❌ Errore durante l'acquisizione della skin da ${user}.`);
                             const box = document.createElement('div');
                             box.className = 'box';
 
@@ -583,7 +578,7 @@ class Friends {
                             modal.remove();
                         });
                     } catch (error) {
-                            console.log(`❌ Error al obtener la skin de ${user}.`);
+                            console.log(`❌ Errore durante l'acquisizione della skin da ${user}.`);
                         const box1 = document.createElement('div');
                         box1.className = 'box';
 
@@ -745,7 +740,7 @@ class Friends {
                         modalBody.appendChild(box2);
                         img2.style.backgroundImage = "url('http://api.battlylauncher.com/api/skin/" + solicitud + ".png')";
                     } catch (error) {
-                            console.log(`❌ Error al obtener la skin de ${user}.`);
+                            console.log(`❌ Errore durante l'acquisizione della skin da ${user}.`);
                         // Crear el segundo cuadro de solicitud
                         const box2 = document.createElement('div');
                         box2.className = 'box';
@@ -850,7 +845,7 @@ class Friends {
 
             setTimeout(() => {
                 if (!amigosObtenidos) {
-                    console.log('❌ Error al obtener la lista de amigos. Comprueba tu conexión a internet y vuelve a intentarlo más tarde.');
+                    console.log('❌ Errore durante il recupero dell\'elenco degli amici. Controlla la tua connessione Internet e riprova più tardi.');
                     const box = document.createElement('div');
                     box.className = 'box';
 
@@ -1050,7 +1045,7 @@ class Friends {
                         img.style.backgroundImage = `url('http://api.battlylauncher.com/api/skin/${username}.png')`;
 
                     } catch (error) {
-                            console.log(`❌ Error al obtener la skin de ${username}.`);
+                            console.log(`❌ Errore durante l'acquisizione della skin da ${username}.`);
 
                         const box = document.createElement('div');
                         box.className = 'box friend-card';
@@ -1245,7 +1240,7 @@ class Friends {
                         panelAmigos.appendChild(box);
                         img.style.backgroundImage = `url('http://api.battlylauncher.com/api/skin/${username}.png')`;
                     } catch (error) {
-                            console.log(`❌ Error al obtener la skin de ${username}.`);
+                            console.log(`❌ Errore durante l'acquisizione della skin da ${username}.`);
                         const box = document.createElement('div');
                         box.className = 'box friend-card';
 
@@ -1390,7 +1385,7 @@ class Friends {
                     }
                     
                     catch (error) {
-                            console.log(`❌ Error al obtener la skin de ${username}.`);
+                            console.log(`❌ Errore durante l'acquisizione della skin da ${username}.`);
                         const box = document.createElement('div');
                         box.className = 'box friend-card';
 

@@ -1,11 +1,11 @@
 {
   "name": "battly-launcher",
   "productname": "Battly Launcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "src/app.js",
   "author": "BATTLY STUDIOS",
-  "url": "https://api.battlylauncher.com/battlylauncher",
+  "url": "https://api.battly.site",
   "engines": {
     "node": "^18.x.x"
   },

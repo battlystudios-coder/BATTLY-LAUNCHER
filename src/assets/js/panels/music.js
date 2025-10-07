@@ -1,4 +1,3 @@
-
 'use strict';
 
 const { ipcMain, ipcRenderer } = require('electron');
@@ -329,7 +328,7 @@ class Music {
                 const audioFormat = info.formats.find(format => format.mimeType.includes('audio/mp4'));
       
                 if (!audioFormat) {
-                  console.error("No se encontró un formato de audio adecuado");
+                  console.error("Nessun formato audio adatto trovato");
                   return;
                 }
       
@@ -503,7 +502,7 @@ class Music {
           const audioFormat = info.formats.find(format => format.mimeType.includes('audio/mp4'));
       
           if (!audioFormat) {
-            console.error("No se encontró un formato de audio adecuado");
+            console.error("Nessun formato audio adatto trovato");
             return;
           }
       
@@ -530,7 +529,7 @@ class Music {
           addMusicToPlaylist(musicList_.length);
         })
         .catch(error => {
-          console.error("Error al obtener información del video:");
+          console.error("Errore durante il recupero delle informazioni video:");
           console.error(error);
         });
     }

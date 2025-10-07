@@ -1,7 +1,3 @@
-/**
- * @author TECNO BROS
- 
- */
 "use strict";
 import {
     logger,
@@ -44,8 +40,8 @@ function ShowPanelError(error) {
     audioError.play();
 
     ipcRenderer.send("new-notification", {
-        title: "Error al abrir Minecraft",
-        body: "Consulta el error abriendo Battly.",
+        title: "Errore durante l'apertura di Minecraft",
+        body: "Verificare l'errore aprendo Battly.",
     });
     // Crear el elemento div principal con la clase "modal is-active"
     const modalDiv = document.createElement('div');
@@ -85,7 +81,7 @@ function ShowPanelError(error) {
 
     // Crear el elemento p con el mensaje de error y agregarlo al div section
     const errorP = document.createElement('p');
-    errorP.textContent = 'Esto es un mensaje de error al iniciar Minecraft. Esto no es por culpa de Battly, no reportar este problema.';
+    errorP.textContent = 'Questo è un messaggio di errore che compare all\'avvio di Minecraft. Non è colpa di Battly; per favore, non segnalare il problema.';
     bodySection.appendChild(errorP);
 
     // Crear el elemento div con la clase "card" y agregarlo al div section
@@ -147,7 +143,7 @@ function ShowPanelError(error) {
     const discordBtn = document.createElement('button');
     discordBtn.className = 'button is-info';
     discordBtn.addEventListener('click', () => {
-        shell.openExternal('https://discord.gg/tecno-bros-885235460178342009');
+        shell.openExternal('https://discord.battly.site');
     });
     discordBtn.innerHTML = '<span><i class="fab fa-discord"></i> Discord</span>';
 
@@ -1119,7 +1115,7 @@ class Home {
                                             }
                                         }
                                     } else {
-                                        console.log("❌ La versión no está en la lista.");
+                                        console.log("❌ La versione non è elencata.");
                                     }
 
                                     let archivoConfigSkins = `${dataDirectory}/.battly/instances/${instancias[i]}/CustomSkinLoader/CustomSkinLoader.json`;
@@ -1199,7 +1195,7 @@ class Home {
 
                         });
                     } catch {
-                        console.log("❌ No se ha podido leer el archivo instance.json");
+                        console.log("❌ Non è stato possibile leggere il file instance.json.");
                     }
                 }
                     
@@ -1563,10 +1559,10 @@ class Home {
                         `${dataDirectory}/.battly/runtime/jre-17.0.1.12.1-windows-x64/bin/java.exe`
                     );
                 } else {
-                    inputRutaJava.value = "Java no encontrado. Haz click aquí para buscarlo.";
+                    inputRutaJava.value = "Java non trovato. Clicca qui per cercarlo.";
                 }
             } else {
-                inputRutaJava.value = "Java no encontrado. Haz click aquí para buscarlo.";
+                inputRutaJava.value = "Java non trovato. Clicca qui per cercarlo.";
             }
         }
     }
@@ -1827,7 +1823,7 @@ class Home {
             "BotonUnirseServidorDiscord"
         );
         BotonUnirseServidorDiscord.addEventListener("click", function () {
-            window.open("https://discord.gg/tecno-bros-885235460178342009", "_blank");
+            window.open("https://discord.battly.site", "_blank");
         });
     }
 
@@ -1957,12 +1953,12 @@ class Home {
                 blockNews.innerHTML = `
                     <div class="news-header">
                         <div class="header-text">
-                            <div class="title_">No hay noticias disponibles actualmente.</div>
+                            <div class="title_">Al momento non ci sono notizie disponibili.</div>
                         </div>
                     </div>
                     <div class="news-content">
                         <div class="bbWrapper">
-                            <p>Puedes seguir todas las noticias relacionadas con el servidor aquí.</p>
+                            <p>Qui potete seguire tutte le novità relative al server.</p>
                         </div>
                     </div>`;
                 news.appendChild(blockNews);
@@ -1997,12 +1993,12 @@ class Home {
             blockNews.innerHTML = `
                 <div class="news-header">
                     <div class="header-text">
-                        <div class="title">Error.</div>
+                        <div class="title">Errore.</div>
                     </div>
                 </div>
                 <div class="news-content">
                     <div class="bbWrapper">
-                        <p>No se puede contactar con el servidor de noticias.</br>Por favor, compruebe su configuración.</p>
+                        <p>Non è stato possibile contattare il server delle notizie.</br>Controlla le impostazioni.</p>
                     </div>
                 </div>`;
             // news.appendChild(blockNews);
@@ -2611,9 +2607,9 @@ class Home {
 
                 launch.on("debug", (e) => {
                     consoleOutput_ += `[DEBUG] ${JSON.stringify(e, null, 2)}\n`;
-                    if (e.includes("Failed to start due to TypeError")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                    if (e.includes("Impossibile avviare a causa di TypeError")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
 
-                    if (e.includes("Downloaded and extracted natives")) {
+                    if (e.includes("Nativi scaricati ed estratti")) {
 
                         progressBar1.style.display = "";
                         progressBar1.max = 100;
@@ -2622,49 +2618,49 @@ class Home {
                         info.innerHTML = langs.downloading_files;
                     }
 
-                    if (e.includes("Attempting to download Minecraft version jar")) {
+                    if (e.includes("Tentativo di scaricare la versione jar di Minecraft")) {
                         info.innerHTML = langs.downloading_version;
                     }
 
-                    if (e.includes("Attempting to download assets")) {
+                    if (e.includes("Tentativo di scaricare risorse")) {
                         info.innerHTML = langs.downloading_assets;
                     }
 
-                    if (e.includes("Downloaded Minecraft version jar")) {
+                    if (e.includes("Scaricato il file jar della versione Minecraft")) {
                         info.innerHTML = langs.downloading_libraries;
                     }
 
-                    if (e.includes("Downloaded and extracted natives")) {
+                    if (e.includes("Nativi scaricati ed estratti")) {
                         info.innerHTML = langs.downloading_natives;
                     }
 
-                    if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                    if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                    if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nErrore:\n${e}`);
+                    if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nErrore:\n${e}`);
 
-                    if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                    if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                    if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nErrore:\n${e}`);
+                    if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nErrore:\n${e}`);
 
-                    if (e.includes("Forge patcher exited with code 1")) {
-                        ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
+                    if (e.includes("Forge patcher è uscito con codice 1")) {
+                        ShowPanelError(`${langs.error_detected_four} \nErrore:\n${e}`);
                         progressBar1.style.display = "none";
                         info.style.display = "none";
                         playBtn.style.display = "";
                     }
 
-                    if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                    if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nErrore:\n${e}`);
 
-                    if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                    if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nErrore:\n${e}`);
 
-                    if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                    if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nErrore:\n${e}`);
 
-                    if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                    if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nErrore:\n${e}`);
                 });
                 launch.on("data", (e) => {
                     consoleOutput_ += `[DEBUG] ${JSON.stringify(e, null, 2)}\n`;
-                    if (e.includes("Failed to start du<e to TypeError")) {
+                    if (e.includes("Impossibile avviare a causa di TypeError")) {
                         Toast.fire({
                             icon: "error",
-                            title: "Error al iniciar Minecraft",
+                            title: "Errore durante l'avvio di Minecraft",
                         });
                         progressBar1.style.display = "none";
                         progressBar1.max = 100;
@@ -2739,7 +2735,7 @@ class Home {
                 });
 
                 launch.on("patch", (patch) => {
-                    consoleOutput_ += `[INSTALANDO LOADER] ${patch}\n`;
+                    consoleOutput_ += `[INSTALLAZIONE DEL CARICATORE] ${patch}\n`;
                     let seMostroInstalando = false;
                     if (seMostroInstalando) { } else {
                         logTextArea1.innerHTML = `${langs.installing_loader}...`;
@@ -2757,33 +2753,33 @@ class Home {
                     if (launcherSettings.launcher.close === "close-launcher")
                         ipcRenderer.send("main-window-hide");
 
-                    if (e.includes("Launching with arguments"))
+                    if (e.includes("Avvio con argomenti"))
                         info.innerHTML = `${langs.starting_minecraft}...`;;
 
-                    if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                    if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                    if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nErrore:\n${e}`);
+                    if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nErrore:\n${e}`);
 
-                    if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                    if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                    if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nErrore:\n${e}`);
+                    if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nErrore:\n${e}`);
 
-                    if (e.includes("Forge patcher exited with code 1")) {
-                        ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
+                    if (e.includes("Forge patcher è uscito con codice 1")) {
+                        ShowPanelError(`${langs.error_detected_four} \nErrore:\n${e}`);
                         progressBar1.style.display = "none";
                         info.style.display = "none";
                         playBtn.style.display = "";
                     }
 
-                    if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                    if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nErrore:\n${e}`);
 
-                    if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                    if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nErrore:\n${e}`);
 
-                    if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                    if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nErrore:\n${e}`);
 
-                    if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                    if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nErrore:\n${e}`);
 
                     if (
-                        e.includes(`Setting user: ${account.name}`) ||
-                        e.includes("Launching wrapped minecraft")
+                        e.includes(`Impostazione utente: ${account.name}`) ||
+                        e.includes("Lancio di Minecraft avvolto")
                     ) {
                         if (inicio == false) {
                             let typeOfVersion;
@@ -2841,7 +2837,7 @@ class Home {
                             inicio = true;
                             info.innerHTML = `${langs.minecraft_started_correctly}.`;
                             logTextArea1.innerHTML = ``;
-                            textInfo.innerHTML = `Selecciona la versión que quieres abrir`;
+                            textInfo.innerHTML = `Seleziona la versione che vuoi aprire`;
                             ipcRenderer.send("new-notification", {
                                 title: langs.minecraft_started_correctly,
                                 body: langs.minecraft_started_correctly_body,
@@ -2851,14 +2847,14 @@ class Home {
                         }
                     }
 
-                    if (e.includes("Connecting to")) {
-                        let msj = e.split("Connecting to ")[1].split("...")[0];
+                    if (e.includes("Connessione a")) {
+                        let msj = e.split("Connessione a ")[1].split("...")[0];
                         info.innerHTML = `Conectando a ${msj}`;
                     }
                 });
 
                 launch.on("close", (code) => {
-                    consoleOutput_ += `---------- [MC] Código de salida: ${code}\n ----------`;
+                    consoleOutput_ += `---------- [MC] Codice di uscita: ${code}\n ----------`;
                     if (launcherSettings.launcher.close === "close-launcher")
                         ipcRenderer.send("main-window-show");
 
@@ -2869,11 +2865,11 @@ class Home {
                     })
                     info.style.display = "none";
                     playBtn.style.display = "";
-                    info.innerHTML = `Verificando archivos...`;
+                    info.innerHTML = `Verifica dei file...`;
                     footermodaliniciarversion.style.display = "";
-                    textInfo.innerHTML = "Selecciona la versión que quieres abrir";
+                    textInfo.innerHTML = "Seleziona la versione che vuoi aprire";
                     new logger("Launcher", "#3e8ed0");
-                    console.log("🔧 Minecraft cerrado");
+                    console.log("🔧 Minecraft chiuso");
                     document.getElementById("carga-de-versiones").style.display = "none";
 
                     progressBar1.style.display = "none";
@@ -2900,18 +2896,18 @@ class Home {
                 });
 
                 launch.on("error", (err) => {
-                    consoleOutput_ += `[ERROR] ${JSON.stringify(err, null, 2)}\n`;
+                    consoleOutput_ += `[ERRORE] ${JSON.stringify(err, null, 2)}\n`;
 
                     progressBar1.style.display = "none";
                     info.style.display = "none";
                     playBtn.style.display = "";
 
                     return Toast.fire({
-                        title: "Error",
-                        text: "Error al iniciar Minecraft. Error desconocido. Vuelve a iniciar Minecraft. [ERROR: 7] \nError: " +
+                        title: "Errore",
+                        text: "Errore durante l'avvio di Minecraft. Errore sconosciuto. Riavvia Minecraft. [ERRORE: 7] \nErrore: " +
                             err.error,
                         icon: "error",
-                        button: "Aceptar",
+                        button: "Accetta",
                     });
                 });
 
@@ -2928,10 +2924,10 @@ class Home {
 
                 launch_core.on("debug", (e) => {
                     consoleOutput_ += `[MC] ${JSON.stringify(e, null, 2)}\n`;
-                    if (e.includes("Failed to start due to TypeError")) {
+                    if (e.includes("Impossibile avviare a causa di TypeError")) {
                         Toast.fire({
                             icon: "error",
-                            title: "Error al iniciar Minecraft",
+                            title: "Errore durante l'avvio di Minecraft",
                         });
                         progressBar1.style.display = "none";
                         progressBar1.max = 100;
@@ -2941,7 +2937,7 @@ class Home {
                         crasheo = true;
                     }
 
-                    if (e.includes("Downloaded and extracted natives")) {
+                    if (e.includes("Nativi scaricati ed estratti")) {
                         progressBar1.style.display = "";
                         progressBar1.max = 100;
                         progressBar1.value = 0;
@@ -2949,42 +2945,42 @@ class Home {
                         info.innerHTML = langs.downloading_files;
                     }
 
-                    if (e.includes("Attempting to download Minecraft version jar")) {
+                    if (e.includes("Tentativo di scaricare la versione jar di Minecraft")) {
                         info.innerHTML = langs.downloading_version;
                     }
 
-                    if (e.includes("Attempting to download assets")) {
+                    if (e.includes("Tentativo di scaricare risorse")) {
                         info.innerHTML = langs.downloading_assets
                     }
 
-                    if (e.includes("Downloaded Minecraft version jar")) {
+                    if (e.includes("Scaricato il file jar della versione Minecraft")) {
                         info.innerHTML = langs.downloading_libraries;
                     }
 
-                    if (e.includes("Downloaded and extracted natives")) {
+                    if (e.includes("Nativi scaricati ed estratti")) {
                         info.innerHTML = langs.downloading_natives;
                     }
 
-                    if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                    if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                    if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nErrore:\n${e}`);
+                    if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nErrore:\n${e}`);
 
-                    if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                    if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                    if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nErrore:\n${e}`);
+                    if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nErrore:\n${e}`);
 
-                    if (e.includes("Forge patcher exited with code 1")) {
-                        ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
+                    if (e.includes("Forge patcher è uscito con codice 1")) {
+                        ShowPanelError(`${langs.error_detected_four} \nErrore:\n${e}`);
                         progressBar1.style.display = "none";
                         info.style.display = "none";
                         playBtn.style.display = "";
                     }
 
-                    if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                    if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nErrore:\n${e}`);
 
-                    if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                    if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nErrore:\n${e}`);
 
-                    if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                    if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nErrore:\n${e}`);
 
-                    if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                    if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nErrore:\n${e}`);
                     
                 });
                 launch_core.on("data", async (e) => {
@@ -2994,7 +2990,7 @@ class Home {
                         ipcRenderer.send("main-window-hide");
                     progressBar1.style.display = "none";
 
-                    if (e.includes("Launching with arguments"))
+                    if (e.includes("Avvio con argomenti"))
                         info.innerHTML = `${langs.starting_minecraft}...`;;
 
                     if (iniciando == false) {
@@ -3037,7 +3033,7 @@ class Home {
                                 const editedServersDat = await NBT.write(serversDatData);
                                 fs.writeFileSync(serversDat, editedServersDat);
                             } catch (error) {
-                                console.error("Error al procesar el archivo NBT:", error);
+                                console.error("Errore durante l'elaborazione del file NBT:", error);
                             }
                         } else {
                             try {
@@ -3062,7 +3058,7 @@ class Home {
                                 const editedServersDat = await NBT.write(newData);
                                 fs.writeFileSync(serversDat, editedServersDat);
                             } catch (error) {
-                                console.error("Error al crear el nuevo archivo NBT:", error);
+                                console.error("Errore durante la creazione del nuovo file NBT:", error);
                             }
                         }
 
@@ -3305,26 +3301,26 @@ class Home {
                         }
                     }
 
-                    if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                    if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                    if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                    if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
 
-                    if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                    if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                    if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                    if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
 
-                    if (e.includes("Forge patcher exited with code 1")) {
+                    if (e.includes("Forge patcher è uscito con codice 1")) {
                         ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
                         progressBar1.style.display = "none";
                         info.style.display = "none";
                         playBtn.style.display = "";
                     }
 
-                    if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                    if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                    if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                    if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
 
                     if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                    if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                    if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
                     if (
                         e.includes(`Setting user: ${account.name}`) ||
@@ -3385,7 +3381,7 @@ class Home {
                             inicio = true;
                             info.innerHTML = `${langs.minecraft_started_correctly}.`;
                             logTextArea1.innerHTML = ``;
-                            textInfo.innerHTML = `Selecciona la versión que quieres abrir`;
+                            textInfo.innerHTML = `Seleziona la versione che vuoi aprire`;
                             ipcRenderer.send("new-notification", {
                                 title: langs.minecraft_started_correctly,
                                 body: langs.minecraft_started_correctly_body,
@@ -3402,7 +3398,7 @@ class Home {
                 });
 
                 launch_core.on("progress", (progress, size) => {
-                    consoleOutput_ += `[DESCARGANDO] ${progress} / ${size}\n`;
+                    consoleOutput_ += `[Download in corso] ${progress} / ${size}\n`;
                     if (seMostroInstalando_core) { } else {
                         seMostroInstalando_core = true;
                     }
@@ -3412,7 +3408,7 @@ class Home {
                         progreso = 100;
                     }
                     progressBar1.style.display = "block";
-                    info.innerHTML = `Descargando... ${progreso}%`;
+                    info.innerHTML = `Download in corso... ${progreso}%`;
                     ipcRenderer.send("main-window-progress", {
                         progress,
                         size
@@ -3421,7 +3417,7 @@ class Home {
                     progressBar1.max = size;
                 });
                 launch_core.on("check", (progress, size) => {
-                    consoleOutput_ += `[INSTALANDO MC] ${progress} / ${size}\n`;
+                    consoleOutput_ += `[INSTALLAZIONE MC] ${progress} / ${size}\n`;
                     let seMostroInstalando = false;
                     if (seMostroInstalando) { } else {
                         logTextArea1.innerHTML = `${langs.extracting_loader}.`;
@@ -3434,7 +3430,7 @@ class Home {
                         progress_actual,
                         size_actual,
                     });
-                    info.innerHTML = `Extrayendo ModPack... ${progress_actual}%`;
+                    info.innerHTML = `Estrazione del ModPack... ${progress_actual}%`;
                     progressBar1.value = progress;
                     progressBar1.max = size;
                 });
@@ -3482,7 +3478,7 @@ class Home {
 
                 let seMostroInstalando = false;
                 launch_core.on("patch", (patch) => {
-                    consoleOutput_ += `[INSTALANDO LOADER] ${patch}\n`;
+                    consoleOutput_ += `[INSTALLAZIONE DEL CARICATORE] ${patch}\n`;
                     if (seMostroInstalando) { } else {
                         logTextArea1.innerHTML = `${langs.extracting_loader}.`;
                         seMostroInstalando = true;
@@ -3496,7 +3492,7 @@ class Home {
                         ipcRenderer.send("main-window-hide");
                     progressBar1.style.display = "none";
 
-                    if (e.includes("Launching with arguments"))
+                    if (e.includes("Avvio con argomenti"))
                         info.innerHTML = `${langs.starting_minecraft}...`;;
 
                     if (iniciando == false) {
@@ -3538,7 +3534,7 @@ class Home {
                                 const editedServersDat = await NBT.write(serversDatData);
                                 fs.writeFileSync(serversDat, editedServersDat);
                             } catch (error) {
-                                console.error("Error al procesar el archivo NBT:", error);
+                                console.error("Errore durante l'elaborazione del file NBT:", error);
                             }
                         } else {
                             try {
@@ -3563,7 +3559,7 @@ class Home {
                                 const editedServersDat = await NBT.write(newData);
                                 fs.writeFileSync(serversDat, editedServersDat);
                             } catch (error) {
-                                console.error("Error al crear el nuevo archivo NBT:", error);
+                                console.error("Errore durante la creazione del nuovo file NBT:", error);
                             }
                         }
 
@@ -3801,26 +3797,26 @@ class Home {
                         }
                     }
 
-                    if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                    if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                    if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                    if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
 
-                    if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                    if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                    if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                    if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
 
-                    if (e.includes("Forge patcher exited with code 1")) {
+                    if (e.includes("Forge patcher è uscito con codice 1")) {
                         ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
                         progressBar1.style.display = "none";
                         info.style.display = "none";
                         playBtn.style.display = "";
                     }
 
-                    if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                    if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                    if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                    if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
 
                     if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                    if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                    if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
                     if (
                         e.includes(`Setting user: ${account.name}`) ||
@@ -3850,7 +3846,7 @@ class Home {
                             inicio = true;
                             info.innerHTML = `${langs.minecraft_started_correctly}.`;
                             logTextArea1.innerHTML = ``;
-                            textInfo.innerHTML = `Selecciona la versión que quieres abrir`;
+                            textInfo.innerHTML = `Seleziona la versione che vuoi aprire`;
                             ipcRenderer.send("new-notification", {
                                 title: langs.minecraft_started_correctly,
                                 body: langs.minecraft_started_correctly_body,
@@ -3875,11 +3871,11 @@ class Home {
                     progressBar1.style.display = "none";
                     info.style.display = "none";
                     playBtn.style.display = "";
-                    info.innerHTML = `Verificando archivos...`;
+                    info.innerHTML = `Verifica dei file...`;
                     footermodaliniciarversion.style.display = "";
-                    textInfo.innerHTML = "Selecciona la versión que quieres abrir";
+                    textInfo.innerHTML = "Seleziona la versione che vuoi aprire";
                     new logger("Launcher", "#3e8ed0");
-                    console.log("🔧 Minecraft cerrado");
+                    console.log("🔧 Minecraft chiuso");
 
                     progressBar1.style.display = "none";
 
@@ -3904,7 +3900,7 @@ class Home {
                 });
 
                 launch_core.on("error", (err) => {
-                    consoleOutput_ += `[ERROR] ${JSON.stringify(err, null, 2)}\n`;
+                    consoleOutput_ += `[ERRORE] ${JSON.stringify(err, null, 2)}\n`;
                 });
             });
 
@@ -4873,11 +4869,11 @@ class Home {
                                         });
                                     } else {
                                         logTextArea1.value += `❌ ${langs.error_downloading} ${url}. ${langs.status}: ${response.statusCode}\n`;
-                                        reject(`Error al descargar ${url}. Estado: ${response.statusCode}`);
+                                        reject(`Errore durante il download ${url}. Stato: ${response.statusCode}`);
                                     }
                                 }).on('error', (error) => {
                                     logTextArea1.value += `❌ ${langs.error_http}: ${error.message}\n`;
-                                    reject(`Error en la solicitud HTTP: ${error.message}`);
+                                    reject(`Errore nella richiesta HTTP: ${error.message}`);
                                 });
                             });
                         }
@@ -5032,32 +5028,32 @@ class Home {
                             }
 
                             launch.on('debug', (e) => {
-                                if (e.includes("Attempting to download assets")) {
+                                if (e.includes("Tentativo di scaricare risorse")) {
                                     progressText1.innerHTML = `🔄 ${langs.downloading_assets}...`;
                                     logText1.innerHTML = `🔄 ${langs.downloading_assets}...`;
                                     progressBar1.value = 0;
                                 }
 
-                                if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                                if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                                if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                                if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
 
-                                if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                                if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                                if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                                if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
 
-                                if (e.includes("Forge patcher exited with code 1")) {
+                                if (e.includes("Forge patcher è uscito con codice 1")) {
                                     ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
                                     progressBar1.style.display = "none";
                                     info.style.display = "none";
                                     playBtn.style.display = "";
                                 }
 
-                                if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                                if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                                if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                                if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
 
                                 if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                                if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                                if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
                             });
 
                             let inicio = false;
@@ -5082,37 +5078,37 @@ class Home {
                                     }
                                 }
                               
-                                if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                                if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                                if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                                if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
 
-                                if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                                if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                                if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                                if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
 
-                                if (e.includes("Forge patcher exited with code 1")) {
+                                if (e.includes("Forge patcher è uscito con codice 1")) {
                                     ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
                                     progressBar1.style.display = "none";
                                     info.style.display = "none";
                                     playBtn.style.display = "";
                                 }
 
-                                if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                                if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                                if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                                if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
 
                                 if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                                if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                                if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
                                 
                             });
 
                             let progressShown = false;
                             launch.on('progress', (e) => {
                                 if (!progressShown) {
-                                    logTextArea1.value += `🔄 Descargando archivos de Minecraft...`;
+                                    logTextArea1.value += `🔄 Scarica i file in corso de Minecraft...`;
                                     progressShown = true;
                                 }
                                 let progress = (e.task / e.total * 100).toFixed(2);
-                                progressText1.innerHTML = "🔄 Descargando archivos... " + progress + "%";
+                                progressText1.innerHTML = "🔄 Scarica i file in corso... " + progress + "%";
                                 progressBar1.value = progress
                             });
 
@@ -5134,7 +5130,7 @@ class Home {
                             launch.on('download-status', (e) => {
                                 if (e.type == "task") {
                                     if (e.task == "Downloading") {
-                                        progressText1.innerHTML = "🔄 Descargando archivos... " + e.progress + "%";
+                                        progressText1.innerHTML = "🔄 Scarica i file in corso... " + e.progress + "%";
                                         progressBar1.value = e.progress;
                                     }
                                 }
@@ -5312,12 +5308,12 @@ class Home {
                                             resolve(response);
                                         });
                                     } else {
-                                        logTextArea1.value += `❌ Error al descargar ${url}. Estado: ${response.statusCode}\n`;
-                                        reject(`Error al descargar ${url}. Estado: ${response.statusCode}`);
+                                        logTextArea1.value += `❌ Errore durante il download ${url}. Stato: ${response.statusCode}\n`;
+                                        reject(`Errore durante il download ${url}. Stato: ${response.statusCode}`);
                                     }
                                 }).on('error', (error) => {
-                                    logTextArea1.value += `❌ Error en la solicitud HTTP: ${error.message}\n`;
-                                    reject(`Error en la solicitud HTTP: ${error.message}`);
+                                    logTextArea1.value += `❌ Errore nella richiesta HTTP: ${error.message}\n`;
+                                    reject(`Errore nella richiesta HTTP: ${error.message}`);
                                 });
                             });
                         }
@@ -5328,128 +5324,128 @@ class Home {
 
                         async function CreateLibrariesDirectory() {
                             if (!fs.existsSync(`${dataDirectory}/.battly/libraries`)) {
-                                logTextArea1.value += "🔄 Creando carpeta libraries...\n";
+                                logTextArea1.value += "🔄 Creazione della cartella delle librerie...\n";
                                 updateTextareaScroll();
                                 fs.mkdirSync(`${dataDirectory}/.battly/libraries`, {
                                     recursive: true
                                 });
-                                logTextArea1.value += "✅ Carpeta libraries creada.\n";
+                                logTextArea1.value += "✅ Cartella Librerie creata.\n";
                                 progressBar1.value = 10;
                                 updateTextareaScroll();
                             } else {
-                                logTextArea1.value += "⏩ La carpeta libraries ya existe. Saltando...\n";
+                                logTextArea1.value += "⏩ La cartella delle librerie esiste già. Saltare...\n";
                                 progressBar1.value = 10;
                                 updateTextareaScroll();
                             }
 
                             if (!fs.existsSync(`${dataDirectory}/.battly/libraries/optifine`)) {
-                                logTextArea1.value += "🔄 Creando carpeta optifine...\n";
+                                logTextArea1.value += "🔄 Creazione della cartella Optifine...\n";
                                 updateTextareaScroll();
                                 fs.mkdirSync(`${dataDirectory}/.battly/libraries/optifine`, {
                                     recursive: true
                                 });
-                                logTextArea1.value += "✅ Carpeta optifine creada.\n";
+                                logTextArea1.value += "✅ Cartella Optifine creata.\n";
                                 progressBar1.value = 20;
                                 updateTextareaScroll();
                             } else {
-                                logTextArea1.value += "⏩ La carpeta optifine ya existe. Saltando...\n";
+                                logTextArea1.value += "⏩ La cartella Optifine esiste già. Saltare...\n";
                                 progressBar1.value = 20;
                                 updateTextareaScroll();
                             }
 
                             if (!fs.existsSync(`${dataDirectory}/.battly/libraries/optifine/OptiFine`)) {
-                                logTextArea1.value += "🔄 Creando carpeta OptiFine...\n";
+                                logTextArea1.value += "🔄 Creazione della cartella Optifine...\n";
                                 updateTextareaScroll();
                                 fs.mkdirSync(`${dataDirectory}/.battly/libraries/optifine/OptiFine`, {
                                     recursive: true
                                 });
-                                logTextArea1.value += "✅ Carpeta OptiFine creada.\n";
+                                logTextArea1.value += "✅ Cartella Optifine creata.\n";
                                 progressBar1.value = 30;
                                 updateTextareaScroll();
                             } else {
-                                logTextArea1.value += "⏩ La carpeta OptiFine ya existe. Saltando...\n";
+                                logTextArea1.value += "⏩ La cartella Optifine esiste già. Saltare...\n";
                                 progressBar1.value = 30;
                                 updateTextareaScroll();
                             }
 
                             if (!fs.existsSync(`${dataDirectory}/.battly/libraries/optifine/launchwrapper-of`)) {
-                                logTextArea1.value += "🔄 Creando carpeta launchwrapper-of...\n";
+                                logTextArea1.value += "🔄 Creazione della cartella launchwrapper-of...\n";
                                 updateTextareaScroll();
                                 fs.mkdirSync(`${dataDirectory}/.battly/libraries/optifine/launchwrapper-of`, {
                                     recursive: true
                                 });
-                                logTextArea1.value += "✅ Carpeta launchwrapper-of creada.\n";
+                                logTextArea1.value += "✅ cartella launchwrapper-of creata.\n";
                                 progressBar1.value = 40;
                                 updateTextareaScroll();
                             } else {
-                                logTextArea1.value += "⏩ La carpeta launchwrapper-of ya existe. Saltando...\n";
+                                logTextArea1.value += "⏩ La cartella launchwrapper-of esiste già. Verrà ignorata...\n";
                                 progressBar1.value = 40;
                                 updateTextareaScroll();
                             }
 
                             if (!fs.existsSync(`${dataDirectory}/.battly/libraries/optifine/launchwrapper-of/2.1`)) {
-                                logTextArea1.value += "🔄 Creando carpeta 2.1...\n";
+                                logTextArea1.value += "🔄 Creazione della cartella 2.1...\n";
                                 updateTextareaScroll();
                                 fs.mkdirSync(`${dataDirectory}/.battly/libraries/optifine/launchwrapper-of/2.1`, {
                                     recursive: true
                                 });
-                                logTextArea1.value += "✅ Carpeta 2.1 creada.\n";
+                                logTextArea1.value += "✅ Cartella 2.1 creata.\n";
                                 progressBar1.value = 50;
                                 updateTextareaScroll();
                             } else {
-                                logTextArea1.value += "⏩ La carpeta 2.1 ya existe. Saltando...\n";
+                                logTextArea1.value += "⏩ La cartella 2.1 esiste già. Saltare...\n";
                                 progressBar1.value = 50;
                                 updateTextareaScroll();
                             }
 
                             if (!fs.existsSync(`${dataDirectory}/.battly/libraries/optifine/launchwrapper-of/2.2`)) {
-                                logTextArea1.value += "🔄 Creando carpeta 2.2...\n";
+                                logTextArea1.value += "🔄 Creazione della cartella 2.2...\n";
                                 updateTextareaScroll();
                                 fs.mkdirSync(`${dataDirectory}/.battly/libraries/optifine/launchwrapper-of/2.2`, {
                                     recursive: true
                                 });
-                                logTextArea1.value += "✅ Carpeta 2.2 creada.\n";
+                                logTextArea1.value += "✅ Cartella 2.2 creata.\n";
                                 progressBar1.value = 60;
                                 updateTextareaScroll();
                             } else {
-                                logTextArea1.value += "⏩ La carpeta 2.2 ya existe. Saltando...\n";
+                                logTextArea1.value += "⏩ La cartella 2.2 esiste già. Saltare...\n";
                                 progressBar1.value = 60;
                                 updateTextareaScroll();
                             }
 
                             if (!fs.existsSync(`${dataDirectory}/.battly/libraries/optifine/launchwrapper-of/2.3`)) {
-                                logTextArea1.value += "🔄 Creando carpeta 2.3...\n";
+                                logTextArea1.value += "🔄 Creazione della cartella 2.3...\n";
                                 updateTextareaScroll();
                                 fs.mkdirSync(`${dataDirectory}/.battly/libraries/optifine/launchwrapper-of/2.3`, {
                                     recursive: true
                                 });
-                                logTextArea1.value += "✅ Carpeta 2.3 creada.\n";
+                                logTextArea1.value += "✅ Cartella 2.3 creata.\n";
                                 progressBar1.value = 70;
                                 updateTextareaScroll();
                             } else {
-                                logTextArea1.value += "⏩ La carpeta 2.3 ya existe. Saltando...\n";
+                                logTextArea1.value += "⏩ La cartella 2.3 esiste già. Saltare...\n";
                                 progressBar1.value = 70;
                                 updateTextareaScroll();
                             }
 
                             if (!fs.existsSync(`${dataDirectory}/.battly/libraries/optifine/OptiFine/${fileName.replace("-OptiFine", "")}`)) {
-                                logTextArea1.value += "🔄 Creando carpeta " + fileName.replace("-OptiFine", "") + "...\n";
+                                logTextArea1.value += "🔄 Creazione cartella " + fileName.replace("-OptiFine", "") + "...\n";
                                 updateTextareaScroll();
                                 fs.mkdirSync(`${dataDirectory}/.battly/libraries/optifine/OptiFine/${fileName.replace("-OptiFine", "")}`, {
                                     recursive: true
                                 });
-                                logTextArea1.value += "✅ Carpeta " + fileName.replace("-OptiFine", "") + " creada.\n";
+                                logTextArea1.value += "✅ File " + fileName.replace("-OptiFine", "") + " creato.\n";
                                 progressBar1.value = 80;
                                 updateTextareaScroll();
                             } else {
-                                logTextArea1.value += "⏩ La carpeta " + fileName.replace("-OptiFine", "") + " ya existe. Saltando...\n";
+                                logTextArea1.value += "⏩ La cartella " + fileName.replace("-OptiFine", "") + " esiste già. Saltando...\n";
                                 progressBar1.value = 80;
                                 updateTextareaScroll();
                             }
 
                             const libraryJARURL = `https://raw.githubusercontent.com/1ly4s0/battlylauncher-optifine/main/libraries/optifine/OptiFine/${fileName.replace("-OptiFine", "")}/OptiFine-${fileName.replace("-OptiFine", "")}.jar`;
 
-                            logTextArea1.value += "🔄 Descargando archivo JAR de OptiFine...\n";
+                            logTextArea1.value += "🔄 Download in corso archivo JAR de OptiFine...\n";
                             updateTextareaScroll();
                             const libraryJARFile = fs.createWriteStream(`${dataDirectory}/.battly/libraries/optifine/OptiFine/${fileName.replace("-OptiFine", "")}/OptiFine-${fileName.replace("-OptiFine", "")}.jar`);
                             const libraryJARResponse = await downloadFile(libraryJARURL, libraryJARFile);
@@ -5463,29 +5459,29 @@ class Home {
                             const wrapperJARURL23 = `https://raw.githubusercontent.com/1ly4s0/battlylauncher-optifine/main/libraries/optifine/launchwrapper-of/2.3/launchwrapper-of-2.3.jar`;
 
                             const wrapperJAR21File = fs.createWriteStream(`${dataDirectory}/.battly/libraries/optifine/launchwrapper-of/2.1/launchwrapper-of-2.1.jar`);
-                            logTextArea1.value += "🔄 Descargando archivo launchwrapper 2.1...\n";
+                            logTextArea1.value += "🔄 Scarica in corso il file launchwrapper 2.1...\n";
                             updateTextareaScroll();
 
                             const wrapperJAR22File = fs.createWriteStream(`${dataDirectory}/.battly/libraries/optifine/launchwrapper-of/2.2/launchwrapper-of-2.2.jar`);
-                            logTextArea1.value += "🔄 Descargando archivo launchwrapper 2.2...\n";
+                            logTextArea1.value += "🔄 Scarica il file launchwrapper in corsi 2.2...\n";
                             updateTextareaScroll();
 
                             const wrapperJAR23File = fs.createWriteStream(`${dataDirectory}/.battly/libraries/optifine/launchwrapper-of/2.3/launchwrapper-of-2.3.jar`);
-                            logTextArea1.value += "🔄 Descargando archivo launchwrapper 2.3...\n";
+                            logTextArea1.value += "🔄 Scarica il file launchwrapper in corsi 2.3...\n";
                             updateTextareaScroll();
 
                             const wrapperJAR21Response = await downloadFile(wrapperJARURL21, wrapperJAR21File);
-                            logTextArea1.value += `✅ Archivo JAR de launchwrapper-of-2.1 descargado: ${wrapperJAR21Response.statusCode}\n`;
+                            logTextArea1.value += `✅ launchwrapper-del file JAR-2.1 dimesso: ${wrapperJAR21Response.statusCode}\n`;
                             progressBar1.value = 85;
                             updateTextareaScroll();
 
                             const wrapperJAR22Response = await downloadFile(wrapperJARURL22, wrapperJAR22File);
-                            logTextArea1.value += `✅ Archivo JAR de launchwrapper-of-2.2 descargado: ${wrapperJAR22Response.statusCode}\n`;
+                            logTextArea1.value += `✅ launchwrapper-del file JAR-2.2 dimesso: ${wrapperJAR22Response.statusCode}\n`;
                             progressBar1.value = 90;
                             updateTextareaScroll();
 
                             const wrapperJAR23Response = await downloadFile(wrapperJARURL23, wrapperJAR23File);
-                            logTextArea1.value += `✅ Archivo JAR de launchwrapper-of-2.3 descargado: ${wrapperJAR23Response.statusCode}\n`;
+                            logTextArea1.value += `✅ launchwrapper-del file JAR-2.3 dimesso: ${wrapperJAR23Response.statusCode}\n`;
                             progressBar1.value = 95;
                             updateTextareaScroll();
                         }
@@ -5507,8 +5503,8 @@ class Home {
                                 });
                                 Toast_.fire({
                                     icon: "error",
-                                    title: "Error al descargar la versión.",
-                                    text: "No tienes la versión requerida de Java, para descargarla, descarga la 1.20.1 de vanilla y luego vuelve a intentarlo."
+                                    title: "Errore durante il download della versione.",
+                                    text: "Se non disponi della versione richiesta di Java, per scaricarla, scarica la versione vanilla 1.20.1 e riprova."
                                 });
                                 return;
                             }
@@ -5518,15 +5514,15 @@ class Home {
 
                         // Descargar los archivos y esperar
                         try {
-                            progressText1.innerHTML = "🔄 Descargando archivos...";
-                            logText1.innerHTML = "🔄 Descargando archivos...";
+                            progressText1.innerHTML = "🔄 Scarica i file in corso...";
+                            logText1.innerHTML = "🔄 Scarica i file in corso...";
                             await CheckAndDownloadJava();
                             await downloadFiles();
                             await CreateLibrariesDirectory();
 
-                            progressText1.innerHTML = "✅ Descargando archivos... Completado.";
-                            logText1.innerHTML = "🔄 Abriendo OptiFine...";
-                            logTextArea1.innerHTML += `✅ Descarga de archivos completada. Instalando dependencias...`;
+                            progressText1.innerHTML = "✅ Scarica i file in corso... Completado.";
+                            logText1.innerHTML = "🔄 Apertura di OptiFine...";
+                            logTextArea1.innerHTML += `✅ Download del file completato. Installazione delle dipendenze...`;
                             progressBar1.value = 100;
 
                             // Realizar el lanzamiento después de descargar los archivos
@@ -5586,32 +5582,32 @@ class Home {
                             }
 
                             launch.on('debug', (e) => {
-                                if (e.includes("Attempting to download assets")) {
-                                    progressText1.innerHTML = "🔄 Descargando archivos...";
-                                    logText1.innerHTML = "🔄 Descargando archivos...";
+                                if (e.includes("Tentativo di scaricare risorse")) {
+                                    progressText1.innerHTML = "🔄 Scarica i file in corso...";
+                                    logText1.innerHTML = "🔄 Scarica i file in corso...";
                                     progressBar1.value = 0;
                                 }
 
-                                if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                                if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                                if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                                if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
 
-                                if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                                if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                                if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                                if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
 
-                                if (e.includes("Forge patcher exited with code 1")) {
+                                if (e.includes("Forge patcher è uscito con codice 1")) {
                                     ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
                                     progressBar1.style.display = "none";
                                     info.style.display = "none";
                                     playBtn.style.display = "";
                                 }
 
-                                if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                                if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                                if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                                if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
 
                                 if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                                if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                                if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
                             });
 
                             let inicio = false;
@@ -5636,37 +5632,37 @@ class Home {
                                     }
                                 }
                               
-                                if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                                if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                                if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                                if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
 
-                                if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                                if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                                if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                                if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
 
-                                if (e.includes("Forge patcher exited with code 1")) {
+                                if (e.includes("Forge patcher è uscito con codice 1")) {
                                     ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
                                     progressBar1.style.display = "none";
                                     info.style.display = "none";
                                     playBtn.style.display = "";
                                 }
 
-                                if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                                if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                                if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                                if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
 
                                 if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                                if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                                if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
                             });
 
                             let progressShown = false;
                             launch.on('progress', (e) => {
                                 if (!progressShown) {
-                                    logTextArea1.value += `🔄 Descargando archivos de Minecraft...`;
+                                    logTextArea1.value += `🔄 Scarica i file in corso de Minecraft...`;
                                     progressShown = true;
                                 }
                                 
                                 let progress = (e.task / e.total * 100).toFixed(2);
-                                progressText1.innerHTML = "🔄 Descargando archivos... " + progress + "%";
+                                progressText1.innerHTML = "🔄 Scarica i file in corso... " + progress + "%";
                                 progressBar1.value = progress
                             });
 
@@ -5688,7 +5684,7 @@ class Home {
                             launch.on('download-status', (e) => {
                                 if (e.type == "task") {
                                     if (e.task == "Downloading") {
-                                        progressText1.innerHTML = "🔄 Descargando archivos... " + e.progress + "%";
+                                        progressText1.innerHTML = "🔄 Scarica i file in corso... " + e.progress + "%";
                                         progressBar1.value = e.progress;
                                     }
                                 }
@@ -6089,7 +6085,7 @@ class Home {
                             crasheo = true;
                         }
 
-                        if (e.includes("Downloaded and extracted natives")) {
+                        if (e.includes("Nativi scaricati ed estratti")) {
 
                             progressBar1.style.display = "";
                             progressBar1.max = 100;
@@ -6098,42 +6094,42 @@ class Home {
                             info.innerHTML = langs.downloading_files;
                         }
 
-                        if (e.includes("Attempting to download Minecraft version jar")) {
+                        if (e.includes("Tentativo di scaricare la versione jar di Minecraft")) {
                             info.innerHTML = langs.downloading_version;
                         }
 
-                        if (e.includes("Attempting to download assets")) {
+                        if (e.includes("Tentativo di scaricare risorse")) {
                             info.innerHTML = langs.downloading_assets;
                         }
 
-                        if (e.includes("Downloaded Minecraft version jar")) {
+                        if (e.includes("Scaricato il file jar della versione Minecraft")) {
                             info.innerHTML = langs.downloading_libraries;
                         }
 
-                        if (e.includes("Downloaded and extracted natives")) {
+                        if (e.includes("Nativi scaricati ed estratti")) {
                             info.innerHTML = langs.downloading_natives;
                         }
 
-                        if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                        if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                        if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                        if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
 
-                        if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                        if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                        if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                        if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
 
-                        if (e.includes("Forge patcher exited with code 1")) {
+                        if (e.includes("Forge patcher è uscito con codice 1")) {
                             ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
                             progressBar1.style.display = "none";
                             info.style.display = "none";
                             playBtn.style.display = "";
                         }
 
-                        if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                        if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                        if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                        if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
 
                         if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                        if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                        if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
                     });
 
                     launch.on("progress", function (e) {
@@ -6200,7 +6196,7 @@ class Home {
                     });
 
                     launch.on("patch", (patch) => {
-                        consoleOutput_ += `[INSTALANDO LOADER] ${patch}\n`;
+                        consoleOutput_ += `[INSTALLAZIONE DEL CARICATORE] ${patch}\n`;
                         let seMostroInstalando = false;
                         if (seMostroInstalando) { } else {
                             logTextArea1.innerHTML = `${langs.installing_loader}...\n`;
@@ -6218,7 +6214,7 @@ class Home {
                         if (launcherSettings.launcher.close === "close-launcher")
                             ipcRenderer.send("main-window-hide");
 
-                        if (e.includes("Launching with arguments"))
+                        if (e.includes("Avvio con argomenti"))
                             info.innerHTML = `${langs.starting_minecraft}...`;;
 
                         if (iniciando == false) {
@@ -6265,7 +6261,7 @@ class Home {
                                 const editedServersDat = await NBT.write(serversDatData);
                                 fs.writeFileSync(serversDat, editedServersDat);
                             } catch (error) {
-                                console.error("Error al procesar el archivo NBT:", error);
+                                console.error("Errore durante l'elaborazione del file NBT:", error);
                             }
                         } else {
                             try {
@@ -6290,30 +6286,30 @@ class Home {
                                 const editedServersDat = await NBT.write(newData);
                                 fs.writeFileSync(serversDat, editedServersDat);
                             } catch (error) {
-                                console.error("Error al crear el nuevo archivo NBT:", error);
+                                console.error("Errore durante la creazione del nuovo file NBT:", error);
                             }
                         }
 
-                        if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                        if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                        if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                        if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
 
-                        if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                        if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                        if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                        if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
 
-                        if (e.includes("Forge patcher exited with code 1")) {
+                        if (e.includes("Forge patcher è uscito con codice 1")) {
                             ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
                             progressBar1.style.display = "none";
                             info.style.display = "none";
                             playBtn.style.display = "";
                         }
 
-                        if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                        if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                        if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                        if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
 
                         if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                        if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                        if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
                         if (
                             e.includes(`Setting user: ${account.name}`) ||
@@ -6370,10 +6366,10 @@ class Home {
                         })
                         info.style.display = "none";
                         playBtn.style.display = "";
-                        info.innerHTML = `Verificando archivos...`;
+                        info.innerHTML = `Verifica dei file...`;
                         new logger("Launcher", "#3e8ed0");
                         progressBar1.style.display = "none";
-                        console.log("🔧 Minecraft cerrado");
+                        console.log("🔧 Minecraft chiuso");
 
                         ipcRenderer.send("delete-and-new-status-discord");
 
@@ -6418,7 +6414,7 @@ class Home {
                             crasheo = true;
                         }
 
-                        if (e.includes("Downloaded and extracted natives")) {
+                        if (e.includes("Nativi scaricati ed estratti")) {
                             progressBar1.style.display = "";
                             progressBar1.max = 100;
                             progressBar1.value = 0;
@@ -6426,42 +6422,42 @@ class Home {
                             info.innerHTML = langs.downloading_files;
                         }
 
-                        if (e.includes("Attempting to download Minecraft version jar")) {
+                        if (e.includes("Tentativo di scaricare la versione jar di Minecraft")) {
                             info.innerHTML = langs.downloading_version;
                         }
 
-                        if (e.includes("Attempting to download assets")) {
+                        if (e.includes("Tentativo di scaricare risorse")) {
                             info.innerHTML = langs.downloading_assets;
                         }
 
-                        if (e.includes("Downloaded Minecraft version jar")) {
+                        if (e.includes("Scaricato il file jar della versione Minecraft")) {
                             info.innerHTML = langs.downloading_libraries;
                         }
 
-                        if (e.includes("Downloaded and extracted natives")) {
+                        if (e.includes("Nativi scaricati ed estratti")) {
                             info.innerHTML = langs.downloading_natives;
                         }
 
-                        if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                        if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                        if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                        if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
 
-                        if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                        if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                        if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                        if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
 
-                        if (e.includes("Forge patcher exited with code 1")) {
+                        if (e.includes("Forge patcher è uscito con codice 1")) {
                             ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
                             progressBar1.style.display = "none";
                             info.style.display = "none";
                             playBtn.style.display = "";
                         }
 
-                        if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                        if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                        if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                        if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
 
                         if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                        if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                        if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
                     });
                     launch_core.on("data", async (e) => {
                         new logger("Minecraft", "#36b030");
@@ -6470,7 +6466,7 @@ class Home {
                             ipcRenderer.send("main-window-hide");
                         progressBar1.style.display = "none";
 
-                        if (e.includes("Launching with arguments"))
+                        if (e.includes("Avvio con argomenti"))
                             info.innerHTML = `${langs.starting_minecraft}...`;;
 
                         if (iniciando == false) {
@@ -6512,7 +6508,7 @@ class Home {
                                 const editedServersDat = await NBT.write(serversDatData);
                                 fs.writeFileSync(serversDat, editedServersDat);
                             } catch (error) {
-                                console.error("Error al procesar el archivo NBT:", error);
+                                console.error("Errore durante l'elaborazione del file NBT:", error);
                             }
                         } else {
                             try {
@@ -6537,7 +6533,7 @@ class Home {
                                 const editedServersDat = await NBT.write(newData);
                                 fs.writeFileSync(serversDat, editedServersDat);
                             } catch (error) {
-                                console.error("Error al crear el nuevo archivo NBT:", error);
+                                console.error("Errore durante la creazione del nuovo file NBT:", error);
                             }
                         }
 
@@ -6821,26 +6817,26 @@ class Home {
                             }
                         }
 
-                        if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                        if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                        if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                        if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
 
-                        if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                        if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                        if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                        if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
 
-                        if (e.includes("Forge patcher exited with code 1")) {
+                        if (e.includes("Forge patcher è uscito con codice 1")) {
                             ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
                             progressBar1.style.display = "none";
                             info.style.display = "none";
                             playBtn.style.display = "";
                         }
 
-                        if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                        if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                        if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                        if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
 
                         if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                        if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                        if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
                         if (
                             e.includes(`Setting user: ${account.name}`) ||
@@ -6897,7 +6893,7 @@ class Home {
                         } else {
                         }
 
-                        consoleOutput_ += `[DESCARGANDO] ${progress} / ${size}\n`;
+                        consoleOutput_ += `[Download in corso] ${progress} / ${size}\n`;
                         updateTextareaScroll();
                         ipcRenderer.send("main-window-progress", {
                             progress,
@@ -6929,7 +6925,7 @@ class Home {
                         } else {
                         }
 
-                        consoleOutput_ += `[INSTALANDO MC] ${progress} / ${size}\n`;
+                        consoleOutput_ += `[INSTALLAZIONE MC] ${progress} / ${size}\n`;
                         let seMostroInstalando = false;
                         if (seMostroInstalando) { } else {
                             seMostroInstalando = true;
@@ -7019,7 +7015,7 @@ class Home {
                             ipcRenderer.send("main-window-hide");
                         progressBar1.style.display = "none";
 
-                        if (e.includes("Launching with arguments"))
+                        if (e.includes("Avvio con argomenti"))
                             info.innerHTML = `${langs.starting_minecraft}...`;;
 
                         if (iniciando == false) {
@@ -7065,7 +7061,7 @@ class Home {
                                 const editedServersDat = await NBT.write(serversDatData);
                                 fs.writeFileSync(serversDat, editedServersDat);
                             } catch (error) {
-                                console.error("Error al procesar el archivo NBT:", error);
+                                console.error("Errore durante l'elaborazione del file NBT:", error);
                             }
                         } else {
                             try {
@@ -7090,7 +7086,7 @@ class Home {
                                 const editedServersDat = await NBT.write(newData);
                                 fs.writeFileSync(serversDat, editedServersDat);
                             } catch (error) {
-                                console.error("Error al crear el nuevo archivo NBT:", error);
+                                console.error("Errore durante la creazione del nuovo file NBT:", error);
                             }
                         }
 
@@ -7374,26 +7370,26 @@ class Home {
                             }
                         }
 
-                        if (e.includes("Failed to start the minecraft server")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
-                        if (e.includes('Exception in thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
+                        if (e.includes("Impossibile avviare il server di Minecraft")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                        if (e.includes('Eccezione nel thread "main" ')) return ShowPanelError(`${langs.error_detected_two} \nError:\n${e}`);
 
-                        if (e.includes("There is insufficient memory for the Java Runtime Environment to continue.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
-                        if (e.includes("Could not reserve enough space for object heap")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                        if (e.includes("La memoria disponibile non è sufficiente per continuare con Java Runtime Environment.")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
+                        if (e.includes("Impossibile riservare spazio sufficiente per l'heap degli oggetti")) return ShowPanelError(`${langs.error_detected_three} \nError:\n${e}`);
 
-                        if (e.includes("Forge patcher exited with code 1")) {
+                        if (e.includes("Forge patcher è uscito con codice 1")) {
                             ShowPanelError(`${langs.error_detected_four} \nError:\n${e}`);
                             progressBar1.style.display = "none";
                             info.style.display = "none";
                             playBtn.style.display = "";
                         }
 
-                        if (e.includes("Unable to launch")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                        if (e.includes("Impossibile avviare")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                        if (e.includes("Minecraft Crash Report") && !e.includes("THIS IS NOT A ERROR")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
+                        if (e.includes("Rapporto sugli arresti anomali di Minecraft") && !e.includes("QUESTO NON È UN ERRORE")) return ShowPanelError(`${langs.error_detected_one} \nError:\n${e}`);
 
                         if (e.includes("java.lang.ClassCastException")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
-                        if (e.includes("Minecraft has crashed!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
+                        if (e.includes("Minecraft si è bloccato!")) return ShowPanelError(`${langs.error_detected_five} \nError:\n${e}`);
 
                         if (
                             e.includes(`Setting user: ${account.name}`) ||
@@ -7453,9 +7449,9 @@ class Home {
                         progressBar1.style.display = "none";
                         info.style.display = "none";
                         playBtn.style.display = "";
-                        info.innerHTML = `Verificando archivos...`;
+                        info.innerHTML = `Verifica dei file...`;
                         new logger("Launcher", "#3e8ed0");
-                        console.log("🔧 Minecraft cerrado");
+                        console.log("🔧 Minecraft chiuso");
 
                         progressBar1.style.display = "none";
                         ipcRenderer.send("delete-and-new-status-discord");
