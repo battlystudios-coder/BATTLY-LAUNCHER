@@ -250,7 +250,7 @@ body {
 }
 
 .search::-webkit-scrollbar-thumb {
-  background: var(--scroll-thumb, linear-gradient(45deg, #00aeff, #a68eff));
+  background: var(--scroll-thumb, linear-gradient(45deg, #ff0000, #a68eff));
   border-radius: var(--scroll-radius, 20px);
 }
 
@@ -387,6 +387,6 @@ body {
 
 /* Estilos adicionales para el efecto de selección */
 .seleccionado {
-  background-color: #3e8ed0;
+  background-color: #d03e3e;
   color: white;
 }
