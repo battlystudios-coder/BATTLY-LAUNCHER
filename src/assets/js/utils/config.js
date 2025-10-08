@@ -2,7 +2,7 @@ const pkg = require('../package.json');
 let url = pkg.user ? `${pkg.url}/${pkg.user}` : pkg.url
 
 let config = `${url}/config.json`;
-let news = `${url}/launcher/news-launcher/news.json`;
+let news = `${url}/news.json`;
 const axios = require("axios")
 const https = require("https")
 const httpsAgent = new https.Agent({
