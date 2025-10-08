@@ -468,7 +468,7 @@ class Home {
                                 title: langs.are_you_sure,
                                 text: langs.are_you_sure_text,
                                 showCancelButton: true,
-                                confirmButtonColor: '#3e8ed0',
+                                confirmButtonColor: '#d03e3eff',
                                 cancelButtonColor: '#d33',
                                 confirmButtonText: langs.yes_delete,
                                 cancelButtonText: langs.no_cancel,
@@ -1681,7 +1681,7 @@ class Home {
         });
 
         let color = localStorage.getItem("theme-color");
-        if (!color) color = "#3e8ed0";
+        if (!color) color = "#d03e3eff";
         let color_bottom_bar = localStorage.getItem("theme-color-bottom-bar");
         let opacity = localStorage.getItem("theme-opacity-bottom-bar");
         let background_img = localStorage.getItem("background-img");

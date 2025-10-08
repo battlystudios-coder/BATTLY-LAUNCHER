@@ -56,7 +56,7 @@ class Settings {
             color.value = color_db;
         } else {
             color.value = "#3e8ed0";
-            localStorage.setItem("theme-color", "#3e8ed0");
+            localStorage.setItem("theme-color", "#d03e3eff");
         }
 
         if (color_bottom_bar_db) {
